@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" style="border-color: var(--bs-gray-100);border-radius: 7px;opacity: 1;">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'portales/styles.css' %}" type="text/css" />
+
+    
+    
+
+</head>
+
+<body id="menu" class="m-auto">
+    <nav id="configuracion" class="navbar navbar-light navbar-expand-md">
+        <div class="container-fluid">
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-2">
+                <span class="visually-hidden">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="navcol-2" class="collapse navbar-collapse justify-content-start order-first">
+                <a href="{% url 'portales' proyecto_id %}" id="home-btn" class="btn-menu"
+                    style="color: var(--bs-body-bg); font-size: 25px">
+                    <i class="fa fa-home"></i> &nbsp
+                </a>
+                <a href="{% url 'nueva_seccion' proyecto_id %}" id="nueva-seccion" class="btn-menu"
+                    onclick="validarClick" style="color: var(--bs-body-bg);font-size: 18px;">
+                    Nueva Sección &nbsp &nbsp
+                </a>
+                <a href="{% url 'nuevo_contenido' proyecto_id %}" style="color: var(--bs-body-bg);font-size: 18px; "
+                    class="btn-menu" id="nueva-pagina">
+                    Nueva Página &nbsp &nbsp
+                </a>
+                <a href="{% url 'variablesEdicion' proyecto_id %}" rel="noopener noreferrer"
+                    style="color: var(--bs-body-bg);font-size: 18px; " class="btn-menu">
+                    Editar Diseño &nbsp &nbsp
+                </a>
+
+                <a href="{% url 'ayuda' proyecto_id %}" rel="noopener noreferrer"
+                    style="color: var(--bs-body-bg);font-size: 18px; " class="btn-menu" id="btn-ayuda">
+                    Ayuda &nbsp &nbsp
+                </a>
+            </div>
+            <button id="btn-cambios" class="btn btn-primary" type="submit">Publicar
+                Cambios</button>
+        </div>
+    </nav>
+    <div class=" text-center" id="guardarForm"
+        style="position: -webkit-sticky; position: sticky; top: 50px; padding: 0%; z-index: 101; ">
+    </div>
+    <div id="guardarForm" class="divAlertas text-center">
+        <div id="divAlertas" class="divAlertas text-center">
+
+        </div>
+
+        {% if alerta_cuerpo %}
+        <div class=" errorContenido error text-center alert alert-danger" style="padding: 0%; ">
+            <p style="color: rgb(99, 4, 4) ">ERROR: La página no tiene contenido, por favor introduzca un contenido.
+            </p>
+        </div>
+        {% endif %}
+    </div>
+
+    <div id="banner"></div>
+
+    <nav id="configuracion" class="navbar navbar-light navbar-expand-md">
+        <a href="{% url 'portales' proyecto_id %}"
+            style="color: var(--bs-body-bg); font-size: 20px; font-weight: bold;">
+            &nbsp &nbsp {{nombre_proyecto}} &nbsp </a>
+    </nav>
+
+    <h1 id="proyecto_id" style="display: none;">{{ proyecto_id }}</h1>
+
+    {% block body %}
+    {% endblock %}
+
+
+</body>
+
+</html>
